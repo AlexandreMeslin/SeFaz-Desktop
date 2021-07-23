@@ -4,7 +4,7 @@ Para executar:
 
 1) Lembre-se de colocar o Gateway no ar:
 
-docker-compose -f /opt/ContextNet/CKC/docker-start-gw.yml up
+docker-compose -f docker-start-gw.yml up
 
 2) Execute o GroupDefiner
 
