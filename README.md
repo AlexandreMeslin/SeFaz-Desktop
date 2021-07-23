@@ -8,7 +8,7 @@ docker-compose -f /opt/ContextNet/CKC/docker-start-gw.yml up
 
 2) Execute o GroupDefiner
 
-java -jar MainGC.jar
+java -jar MainGD.jar
 
 3) Execute o Processing Node (para trocar mensagens)
 
