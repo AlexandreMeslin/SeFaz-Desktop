@@ -1,4 +1,4 @@
-# SeFaz-Desktop
+# Example-MUSANet-Desktop
 
 Para executar:
 

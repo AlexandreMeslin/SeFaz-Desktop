@@ -15,7 +15,7 @@ import java.util.UUID;
  * @author meslin
  *
  */
-public class Inspector implements MobileObject {
+public class MobileNode implements MobileObject {
 	private Date date;
 	private double latitude;
 	private double longitude;
@@ -25,7 +25,7 @@ public class Inspector implements MobileObject {
 	/**
 	 * Constructor<br>
 	 */
-	public Inspector() {
+	public MobileNode() {
 		this.groups = new HashSet<Integer>();
 	}
 
@@ -37,7 +37,7 @@ public class Inspector implements MobileObject {
 	 * @param groups inspector groups
 	 * @param uuid inspector UUID
 	 */
-	public Inspector(Date date, double latitude, double longitude, HashSet<Integer> groups, UUID uuid) {
+	public MobileNode(Date date, double latitude, double longitude, HashSet<Integer> groups, UUID uuid) {
 		super();
 		this.date = date;
 		this.latitude = latitude;
@@ -46,7 +46,7 @@ public class Inspector implements MobileObject {
 		this.uuid = uuid;
 	}
 	
-	public Inspector(Entry<String, Inspector> inspector) {
+	public MobileNode(Entry<String, MobileNode> inspector) {
 		this.date = inspector.getValue().getDate();
 		this.latitude = inspector.getValue().getLatitude();
 		this.longitude = inspector.getValue().getLongitude();
@@ -63,7 +63,7 @@ public class Inspector implements MobileObject {
 	 * @param uuid sender UUID
 	 * @throws ParseException if date not in "E MMM dd HH:mm:ss z yyyy" English format
 	 */
-	public Inspector(String date, double latitude, double longitude, String uuid) throws ParseException {
+	public MobileNode(String date, double latitude, double longitude, String uuid) throws ParseException {
 		date = date.substring(1, date.length()-1);
 		uuid = uuid.substring(1, date.length()-1);
 		this.date = (new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH)).parse("Mon Jun 28 18:04:22 BRT 2021");
@@ -80,7 +80,7 @@ public class Inspector implements MobileObject {
 	 * @param longitude in degrees
 	 * @param uuid sender UUID
 	 */
-	public Inspector(Date date, double latitude, double longitude, String uuid) {
+	public MobileNode(Date date, double latitude, double longitude, String uuid) {
 		this.date = date;
 		this.latitude = latitude;
 		this.longitude = longitude;

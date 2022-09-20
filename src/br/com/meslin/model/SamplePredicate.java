@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  * @author meslin
  *
  */
-public class SamplePredicate implements Predicate<Inspector>
+public class SamplePredicate implements Predicate<MobileNode>
 {
 	UUID uuid;
 
@@ -27,7 +27,7 @@ public class SamplePredicate implements Predicate<Inspector>
 	/**
 	 * Verifica se o username é desse usuário
 	 */
-	public boolean test(Inspector inspector) {
+	public boolean test(MobileNode inspector) {
 		return uuid.equals(inspector.getUuid());
 	}
 }

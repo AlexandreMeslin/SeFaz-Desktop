@@ -36,7 +36,7 @@ import org.openstreetmap.gui.jmapviewer.tilesources.BingAerialTileSource;
 import org.openstreetmap.gui.jmapviewer.tilesources.OsmTileSource;
 
 import br.com.meslin.model.ColorSet;
-import br.com.meslin.model.Inspector;
+import br.com.meslin.model.MobileNode;
 import br.com.meslin.model.Region;
 
 /**
@@ -300,7 +300,7 @@ public class GeographicMap extends JFrame implements JMapViewerEventListener
 	 * Remove a inspector to map
 	 * @param inspector
 	 */
-	public void remove(Inspector inspector) {
+	public void remove(MobileNode inspector) {
 		for(Iterator<MapMarkerDot> iterator = mapMarkerDotList.iterator(); iterator.hasNext();) {
 			MapMarkerDot mapMarkerDot = iterator.next();
 			if(mapMarkerDot.getName().equals(inspector.getUuid().toString())) {
@@ -331,7 +331,7 @@ public class GeographicMap extends JFrame implements JMapViewerEventListener
 	 * Adds a inspector to the map
 	 * @param inspector
 	 */
-	public void addInspector(Inspector inspector) {
+	public void addInspector(MobileNode inspector) {
 		addInspector(inspector.getUuid().toString(), new Coordinate(inspector.getLatitude(), inspector.getLongitude()));
 	}
 }

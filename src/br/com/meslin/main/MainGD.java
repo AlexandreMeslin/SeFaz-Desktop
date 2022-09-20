@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import br.com.meslin.auxiliar.StaticLibrary;
 import br.com.meslin.mapa.GeographicMap;
-import br.com.meslin.model.Inspector;
+import br.com.meslin.model.MobileNode;
 import br.com.meslin.model.Region;
 import br.com.meslin.model.SamplePredicate;
 import ckafka.data.Swap;
@@ -32,7 +32,7 @@ public class MainGD implements GroupSelection {
 	/** JMapViewer-based map */
 	private GeographicMap map;
 	/** A list of inspector from SeFaz */
-	private List<Inspector> inspectorList;
+	private List<MobileNode> inspectorList;
 
 	/**
      * Constructor
@@ -68,7 +68,7 @@ public class MainGD implements GroupSelection {
 		this.map.setVisible(true);
 		
 		// create an empty inspector list
-		this.inspectorList = new ArrayList<Inspector>();
+		this.inspectorList = new ArrayList<MobileNode>();
 
 		/*
 		 * Create GroupDefiner 
@@ -122,14 +122,14 @@ public class MainGD implements GroupSelection {
      * @return a set of groups representing the node groups
      */
     public Set<Integer> getNodesGroupByContext(ObjectNode contextInfo) {
-    	Inspector inspector = null;
+    	MobileNode inspector = null;
         Set<Integer> setOfGroups = new HashSet<Integer>();
         double latitude = Double.parseDouble(String.valueOf(contextInfo.get("latitude")));
         double longitude = Double.parseDouble(String.valueOf(contextInfo.get("longitude")));
 
         // update inspector position on the map
         try {
-			inspector = new Inspector(String.valueOf(contextInfo.get("date")), latitude, longitude,
+			inspector = new MobileNode(String.valueOf(contextInfo.get("date")), latitude, longitude,
 					String.valueOf(contextInfo.get("ID")));
 		} catch (NumberFormatException | ParseException e) {
 			e.printStackTrace();

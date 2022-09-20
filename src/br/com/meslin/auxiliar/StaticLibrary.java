@@ -260,7 +260,7 @@ public class StaticLibrary {
 	 * @param newenv
 	 * @throws Exception
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void setEnv(Map<String, String> newenv) throws Exception {
 		try {
 			Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");

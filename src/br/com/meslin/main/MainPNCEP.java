@@ -20,7 +20,7 @@ import com.espertech.esper.client.UpdateListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.meslin.auxiliar.StaticLibrary;
-import br.com.meslin.model.Inspector;
+import br.com.meslin.model.MobileNode;
 import ckafka.data.Swap;
 import ckafka.data.SwapData;
 import main.java.application.ModelApplication;
@@ -46,7 +46,7 @@ public class MainPNCEP extends ModelApplication  implements UpdateListener {
 		 * The Configuration is used to build an EPServiceProvider, which provides the administrative and runtime interfaces for an Esper engine instance.
 		 */
 		Configuration cepConfig = new Configuration();
-		cepConfig.addEventType("Inspector", Inspector.class.getName());
+		cepConfig.addEventType("Inspector", MobileNode.class.getName());
 		/** The Configuration instance is then passed to EPServiceProvider manager to obtain a configured Esper engine. */
 		EPServiceProvider cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
 		/** CEP Runtime. Insert events. */
@@ -101,7 +101,7 @@ public class MainPNCEP extends ModelApplication  implements UpdateListener {
 			Double latitude = Double.valueOf(String.valueOf(data.getContext().get("latitude")));
 			Double longitude = Double.valueOf(String.valueOf(data.getContext().get("longitude")));
 			System.out.println(String.format("Coordenadas = %f (lat), %f (long)", latitude, longitude));
-			generateInspectorLocationCEPEvent(new Inspector(new Date(), latitude, longitude, (String)record.key()));
+			generateInspectorLocationCEPEvent(new MobileNode(new Date(), latitude, longitude, (String)record.key()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,7 +125,7 @@ public class MainPNCEP extends ModelApplication  implements UpdateListener {
 	 * 
 	 * @param inspectort an inspector with lat/long and UUID
 	 */
-	private void generateInspectorLocationCEPEvent(Inspector inspector) {
+	private void generateInspectorLocationCEPEvent(MobileNode inspector) {
 		// up right    = -22.927271836395280, -43.17771782650461
 		// botton left = -22.946273929306827, -43.19634344082100
 		if(inspector.getLatitude()  > -22.92727183639528  ||
@@ -144,7 +144,7 @@ public class MainPNCEP extends ModelApplication  implements UpdateListener {
 	@Override
 	public void update(EventBean[] newEvents, EventBean[] oldEvents) {
 		logger.info	("Event received: " + newEvents[0].getUnderlying());
-		Inspector inspector = (Inspector) newEvents[0].getUnderlying();
+		MobileNode inspector = (MobileNode) newEvents[0].getUnderlying();
 		String messageText = String.format("Fiscal %s, você está fora de sua área", inspector.getUuid().toString());
 		String uuid = inspector.getUuid().toString();
 		sendUnicastMessage(uuid, messageText);
